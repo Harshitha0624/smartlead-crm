@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>SmartLead CRM</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>SmartLead CRM</h2>
+
+<ul>
+<li><a href="index.html">Dashboard</a></li>
+<li><a href="leads.html">Leads</a></li>
+<li><a href="analytics.html">Analytics</a></li>
+</ul>
+
+</div>
+
+
+<div class="main">
+
+<h1>Sales Dashboard</h1>
+
+
+<!-- KPI CARDS -->
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Leads</h3>
+<p id="totalLeads">0</p>
+</div>
+
+<div class="card">
+<h3>Converted</h3>
+<p id="convertedLeads">0</p>
+</div>
+
+<div class="card">
+<h3>Conversion Rate</h3>
+<p id="conversionRate">0%</p>
+</div>
+
+<div class="card">
+<h3>Followups Today</h3>
+<p id="todayFollowups">0</p>
+</div>
+
+</div>
+
+
+<!-- PRIORITY LEADS -->
+
+<div class="card">
+
+<h2>🔥 Priority Leads</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Source</th>
+<th>Priority</th>
+</tr>
+</thead>
+
+<tbody id="priorityTable"></tbody>
+
+</table>
+
+</div>
+
+
+<!-- LEAD SOURCE CHART -->
+
+<div class="card">
+
+<h2>📊 Lead Source Distribution</h2>
+
+<canvas id="sourceChart"></canvas>
+
+</div>
+
+
+<!-- PIPELINE CHART -->
+
+<div class="card">
+
+<h2>📈 Sales Pipeline</h2>
+
+<canvas id="pipelineChart"></canvas>
+
+</div>
+
+
+<!-- RECENT ACTIVITY -->
+
+<div class="card">
+
+<h2>Recent Activity</h2>
+
+<ul id="activityFeed"></ul>
+
+</div>
+
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>SmartLead CRM Analytics</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>SmartLead CRM</h2>
+
+<ul>
+<li><a href="index.html">Dashboard</a></li>
+<li><a href="leads.html">Leads</a></li>
+<li><a href="analytics.html">Analytics</a></li>
+</ul>
+
+</div>
+
+<div class="main">
+
+<h1>Analytics Dashboard</h1>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Leads</h3>
+<p id="totalLeads">0</p>
+</div>
+
+<div class="card">
+<h3>Converted Leads</h3>
+<p id="convertedLeads">0</p>
+</div>
+
+<div class="card">
+<h3>Conversion Rate</h3>
+<p id="conversionRate">0%</p>
+</div>
+
+</div>
+
+
+<h2>Lead Source Breakdown</h2>
+
+<canvas id="sourceChart"></canvas>
+
+
+<h2>Lead Status Overview</h2>
+
+<canvas id="statusChart"></canvas>
+
+
+<h2>Lead Growth Trend</h2>
+
+<canvas id="growthChart"></canvas>
+
+</div>
+
+
+<script>
+
+async function loadAnalytics(){
+
+let res = await fetch("http://127.0.0.1:5000/api/leads")
+
+let leads = await res.json()
+
+let total = leads.length
+let converted = 0
+
+let website=0
+let referral=0
+let instagram=0
+
+let newStatus=0
+let contacted=0
+let convertedStatus=0
+
+leads.forEach(lead=>{
+
+if(lead.status==="Converted"){
+converted++
+convertedStatus++
+}
+
+if(lead.status==="New") newStatus++
+if(lead.status==="Contacted") contacted++
+
+if(lead.source==="Website") website++
+if(lead.source==="Referral") referral++
+if(lead.source==="Instagram") instagram++
+
+})
+
+document.getElementById("totalLeads").innerText=total
+document.getElementById("convertedLeads").innerText=converted
+
+let rate=0
+
+if(total>0){
+rate=Math.round((converted/total)*100)
+}
+
+document.getElementById("conversionRate").innerText=rate+"%"
+
+
+
+new Chart(document.getElementById("sourceChart"),{
+
+type:"pie",
+
+data:{
+labels:["Website","Referral","Instagram"],
+datasets:[{
+data:[website,referral,instagram],
+backgroundColor:["#2563eb","#16a34a","#f59e0b"]
+}]
+}
+
+})
+
+
+new Chart(document.getElementById("statusChart"),{
+
+type:"bar",
+
+data:{
+labels:["New","Contacted","Converted"],
+datasets:[{
+label:"Lead Status",
+data:[newStatus,contacted,convertedStatus],
+backgroundColor:["#3b82f6","#f59e0b","#22c55e"]
+}]
+}
+
+})
+
+
+new Chart(document.getElementById("growthChart"),{
+
+type:"line",
+
+data:{
+labels:["Week1","Week2","Week3","Week4"],
+datasets:[{
+label:"Lead Growth",
+data:[2,5,8,total],
+borderColor:"#2563eb",
+fill:false
+}]
+}
+
+})
+
+}
+
+loadAnalytics()
+
+</script>
+
+</body>
+</html>

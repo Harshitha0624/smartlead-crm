@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>SmartLead CRM - Leads</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>SmartLead CRM</h2>
+
+<ul>
+<li><a href="index.html">Dashboard</a></li>
+<li><a href="leads.html">Leads</a></li>
+<li><a href="analytics.html">Analytics</a></li>
+</ul>
+
+</div>
+
+
+<div class="main">
+
+<h1>Lead Management</h1>
+
+
+<div class="card">
+
+<h2>Add New Lead</h2>
+
+<div class="form-grid">
+
+<input id="name" placeholder="Name">
+
+<input id="email" placeholder="Email">
+
+<input id="phone" placeholder="Phone">
+
+<select id="source">
+<option>Website</option>
+<option>Referral</option>
+<option>Instagram</option>
+</select>
+
+<input type="date" id="followup">
+
+<textarea id="notes" placeholder="Notes"></textarea>
+
+</div>
+
+<button onclick="addLead()">Add Lead</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>All Leads</h2>
+
+<input 
+id="searchLead"
+placeholder="Search leads..."
+onkeyup="searchLeads()"
+class="search-box"
+>
+
+<table>
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Source</th>
+<th>Status</th>
+<th>Score</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="leadTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
